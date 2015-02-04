@@ -1,16 +1,21 @@
-package com.tunco.domain;
+package com.tunco.model;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 /**
  * Created by dragon on 24-Jan-15.
  */
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
 
-    public User(String name, int id) {
-        this.name = name;
-        this.id = id;
-    }
+    @Size(min = 3, max = 50)
+    @Column(name = "name", nullable = false)
+    private String name;
 
     public int getId() {
         return id;
@@ -27,4 +32,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
 }

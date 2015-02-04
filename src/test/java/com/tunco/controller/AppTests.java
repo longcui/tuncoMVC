@@ -1,4 +1,4 @@
-package com.tunco.mvc;
+package com.tunco.controller;
 
 import org.junit.Before;
 import org.junit.Test;

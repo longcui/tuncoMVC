@@ -1,17 +1,15 @@
-package com.tunco.service;
+package com.tunco.dao;
 
 import com.tunco.model.User;
 
 import java.util.List;
-
-/**
- * Created by dragon on 24-Jan-15.
- */
-public interface  UserService {
+ 
+public interface UserDao {
+ 
     void saveUser(User user);
-
-    List<User> getAllUsers();
-
+     
+    List<User> findAllUsers();
+     
     void deleteUserByName(String name);
 
     void deleteUserById(int id);
