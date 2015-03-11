@@ -20,12 +20,13 @@
 <h2>List of Users</h2>
 <table>
     <tr>
-        <td>ID</td><td>NAME</td><td>NAME</td>
+        <td>ID</td><td>NAME</td><td>EMAIL</td>
     </tr>
     <c:forEach items="${users}" var="user">
         <tr>
             <td>${user.id}</td>
             <td>${user.name}</td>
+            <td>${user.email}</td>
             <td><a href="<c:url value='/delete-${user.id}' />">${user.id}</a></td>
         </tr>
     </c:forEach>

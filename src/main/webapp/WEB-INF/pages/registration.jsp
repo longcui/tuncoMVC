@@ -28,11 +28,17 @@
             <td><form:input path="name" id="name"/></td>
             <td><form:errors path="name" cssClass="error"/></td>
         </tr>
+        <tr>
+            <td><label for="email">Email: </label> </td>
+            <td><form:input path="email" id="email"/></td>
+            <td><form:errors path="name" cssClass="error"/></td>
+        </tr>
 
           <tr>
             <td colspan="3"><input type="submit" value="Register"/></td>
         </tr>
     </table>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form:form>
 <br/>
 <br/>

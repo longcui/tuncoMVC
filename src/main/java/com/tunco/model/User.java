@@ -1,7 +1,6 @@
 package com.tunco.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 /**
  * Created by dragon on 24-Jan-15.
@@ -13,9 +12,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Size(min = 3, max = 50)
+//    @Size(min = 3, max = 50)
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "email", nullable = false)
+    private String email;
 
     public int getId() {
         return id;
@@ -33,4 +35,11 @@ public class User {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

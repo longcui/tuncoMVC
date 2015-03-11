@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
  
-@Repository("employeeDao")
+@Repository("userDao")
 public class UserDaoImpl extends AbstractDao implements UserDao{
  
     public void saveUser(User user) {
