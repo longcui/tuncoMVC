@@ -1,8 +1,11 @@
 package com.tunco.dao;
 
+import com.tunco.model.FacebookUser;
 import com.tunco.model.User;
+import com.tunco.model.UserRole;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,7 +14,26 @@ import java.util.List;
 public class UserDaoImpl extends AbstractDao implements UserDao{
  
     public void saveUser(User user) {
-        persist(user);
+        if(user instanceof FacebookUser) {
+            FacebookUser fbUser = (FacebookUser) user;
+            if(getFbUser(fbUser.getEmail()) == null) {
+                persist(fbUser);
+            }
+        } else {
+            if(getUser(user.getEmail()) == null) {
+                persist(user);
+                persist(new UserRole(user.getName(), "ROLE_USER"));
+            }
+        }
+    }
+
+    private FacebookUser getFbUser(String email) {
+        Object o = getSession().createCriteria(FacebookUser.class).add(Restrictions.eq("email", email)).uniqueResult();
+        return (FacebookUser) o;
+    }
+
+    public User getUser(String email) {
+        return (User) getSession().createCriteria(User.class).add(Restrictions.eq("email", email)).uniqueResult();
     }
 
     @SuppressWarnings("unchecked")

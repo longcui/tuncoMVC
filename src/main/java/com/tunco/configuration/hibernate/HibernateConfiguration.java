@@ -1,50 +1,43 @@
-package com.tunco.configuration;
+package com.tunco.configuration.hibernate;
 
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-import org.springframework.security.samples.config.SecurityConfig;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * Created by dragon on 28-Jan-15.
- */
+* Created by dragon on 28-Jan-15.
+*/
+@EnableWebMvc
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.tunco.configuration" })
-@PropertySource(value = { "classpath:application.properties" })
-@Import({ SecurityConfig.class })
 public class HibernateConfiguration {
+
+    @Autowired
+    DataSource dataSource;
 
     @Autowired
     private Environment environment;
 
-    @Bean
+
+    @Bean(name = "sessionFactory")
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan(new String[] { "com.tunco.model" });
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
 
-    @Bean(name = "dataSource")
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
-        return dataSource;
-    }
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
@@ -61,4 +54,5 @@ public class HibernateConfiguration {
         txManager.setSessionFactory(s);
         return txManager;
     }
+
 }

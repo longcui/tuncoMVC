@@ -1,0 +1,34 @@
+1206
+Implement custom logging
+http://www.mkyong.com/spring-security/spring-security-custom-login-form-annotation-example/
+If you use Spring Security 3.2.x you should change "j_spring_security_check" to "login" and "j_spring_security_logout" to "logout"
+
+And the parameter (username and password) in SecurityConfig.java must have the same name in input in login.jsp. Example:
+
+SecurityConfig.java
+
+usernameParameter("name").passwordParameter("pass")
+
+login.jsp
+
+<tr>
+<td>User:</td>
+<td><input type="text" name="name" value=""></td>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input type="password" name="pass"/></td>
+</tr>
+
+
+1306
+Implement logout function
+<c:url value="/logout" var="logoutUrl" />
+<form action="${logoutUrl}" ...
+it is verid that we use /logout which I have not implemented.
+
+2706
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+it will be interpreted to  /web/resources/js/bootstrap.min.js
+but if we use <script src="/resources/js/bootstrap.min.js"></script>
+it will be interpreted to  resources/js/bootstrap.min.js which is wrong, because it lost the application context
