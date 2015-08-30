@@ -16,6 +16,24 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", noodleType=" + noodleType +
+                ", proteinType=" + proteinType +
+                ", vegetableTypes=" + vegetableTypes +
+                ", sauceType=" + sauceType +
+                ", toppingType=" + toppingType +
+                ", price=" + price +
+                ", takeAway=" + takeAway +
+                ", quantity=" + quantity +
+                ", order=" + order +
+                '}';
+    }
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -28,8 +46,8 @@ public class Item {
     @Column(name = "proteinType", nullable = false)
     private ProteinType proteinType;
 
-    @Column(name = "vegetableType", nullable = false)
-    private ArrayList<VegetableType> vegetableType;
+    @Transient
+    private ArrayList<VegetableType> vegetableTypes;
 
     @Column(name = "sauceType", nullable = false)
     private SauceType sauceType;
@@ -126,18 +144,35 @@ public class Item {
 
     @Transient
     public double calculatePrice() {
-        if(noodleType != null && sauceType != null) {
+        if (noodleType != null && sauceType != null) {
             return noodleType.getPrice() + sauceType.getPrice();
         } else {
             return 0;
         }
     }
 
-    public ArrayList<VegetableType> getVegetableType() {
-        return vegetableType;
+
+    public ArrayList<VegetableType> getVegetableTypes() {
+        return vegetableTypes;
     }
 
-    public void setVegetableType(ArrayList<VegetableType> vegetableType) {
-        this.vegetableType = vegetableType;
+    public void setVegetableTypes(ArrayList<VegetableType> vegetableTypes) {
+        this.vegetableTypes = vegetableTypes;
+    }
+
+    public ProteinType getProteinType() {
+        return proteinType;
+    }
+
+    public void setProteinType(ProteinType proteinType) {
+        this.proteinType = proteinType;
+    }
+
+    public ToppingType getToppingType() {
+        return toppingType;
+    }
+
+    public void setToppingType(ToppingType toppingType) {
+        this.toppingType = toppingType;
     }
 }

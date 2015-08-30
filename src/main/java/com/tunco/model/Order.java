@@ -15,6 +15,16 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", items=" + items.get(0).toString() +
+                ", email='" + email + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", orderStatus=" + orderStatus +
+                '}';
+    }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
     private List<Item> items = new ArrayList<Item>();

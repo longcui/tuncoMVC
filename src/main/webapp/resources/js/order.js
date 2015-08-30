@@ -2,6 +2,18 @@
  * Created by dragon on 12-May-15.
  */
 
+$(document).ready(function() {
+    populateItemList();
+    $("#order").click( sendOrder);
+    $("body").bind("ajaxSend", function(elm, xhr, s){
+        if (s.type == "POST") {
+            xhr.setRequestHeader('X-CSRF-Token', CSRF);
+        }
+    });
+});
+
+
+
 function sendOrder() {
     var email = $("#email").val();
     var telephone = $("#telephone").val();
@@ -50,7 +62,7 @@ function populateItemList() {
         type:"GET",
         success: function(datas) {
             $.each(datas, function(index, data){
-                $("#itemName").append('<option value="cc">dish 3</option>');
+                $("#itemName").append('<option value="' + data + '">' + data + '</option>');
             })
         },
         error: function(request, ajaxOptions, thrownError) {
@@ -60,12 +72,3 @@ function populateItemList() {
 }
 
 
-$(document).ready(function() {
-    populateItemList();
-    $("#order").click( sendOrder);
-    $("body").bind("ajaxSend", function(elm, xhr, s){
-        if (s.type == "POST") {
-            xhr.setRequestHeader('X-CSRF-Token', CSRF);
-        }
-    });
-});

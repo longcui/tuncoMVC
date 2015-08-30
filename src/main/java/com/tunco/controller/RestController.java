@@ -35,9 +35,9 @@ public class RestController {
     }
 
     @RequestMapping(value = "/fbLogin", method = RequestMethod.POST)
-    public ResponseEntity<?> fbLogin(@RequestBody FacebookUser facebookUser) {
+    public String fbLogin(@RequestBody FacebookUser facebookUser) {
         userService.saveUser(facebookUser);
-        return new ResponseEntity<Object>("OK", HttpStatus.OK);
+        return "redirect:"+ "/web/order";
     }
 
     @RequestMapping(value = "/orders", method = RequestMethod.POST)
@@ -79,23 +79,26 @@ public class RestController {
 //        item.setOrder(order);
 
         //email validation
-        boolean validEmailAddress = EmailUtil.isValidEmailAddress(orderRep.getEmail());
+        String email = orderRep.getEmail();
+        boolean validEmailAddress = EmailUtil.isValidEmailAddress(email);
         if (!validEmailAddress) {
             return new ResponseEntity<String>("Email is not a valid form.", HttpStatus.BAD_REQUEST);
         }
 
         //save user
-        User user = new User(orderRep.getName(), orderRep.getEmail());
+        User user = new User(orderRep.getName(), email);
         userService.saveUser(user);
 
-        Order order = new Order(orderRep.getEmail(), orderRep.getItems(), orderRep.getOrderStatus());
+        Order order = new Order(email, orderRep.getItems(), orderRep.getOrderStatus());
         orderService.saveOrder(order);
         for (Item item : orderRep.getItems()) {
             item.setOrder(order);
+            item.setProteinType(ProteinType.BEEF);
+            item.setToppingType(ToppingType.BEAN_SPROUTS);
             item.setPrice(item.calculatePrice());
             orderService.saveItem(item);
         }
-
+        EmailUtil.sendEmail(email, "Order Information", order.toString());
         return new ResponseEntity<String>("order sent.", HttpStatus.OK);
     }
 

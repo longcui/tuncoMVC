@@ -22,7 +22,7 @@ public class EmailUtil {
         return result;
     }
 
-    private static void sendEmail(String recipient, String subject) {
+    public static void sendEmail(String recipient, String subject, String content) {
         final String username = "longcuidev@gmail.com";
         final String password = "clclzpzp";
 
@@ -46,7 +46,7 @@ public class EmailUtil {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(recipient));
             message.setSubject(subject);
-            message.setText("aaa");
+            message.setText(content);
 
             Transport.send(message);
 

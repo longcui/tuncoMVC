@@ -42,7 +42,6 @@
     <div class="form-group">
         <label for="itemName">Select Dish:</label>
         <select class="form-control" id="itemName">
-            <option value="cc">dish 3</option>
         </select>
     </div>
 
