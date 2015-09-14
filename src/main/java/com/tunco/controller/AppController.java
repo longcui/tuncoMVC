@@ -34,12 +34,6 @@ public class AppController {
 		return "hello";
 	}
 
-    @RequestMapping("/index")
-	public String printWelcome1(ModelMap model) {
-		model.addAttribute("message", "Hello world!");
-		return "index";
-	}
-
     //Spring Security see this :
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(
@@ -135,6 +129,11 @@ public class AppController {
     @RequestMapping(value = {"/order"}, method = RequestMethod.GET)
     public String order() {
         return "order";
+    }
+
+    @RequestMapping(value = {"/allOrders"}, method = RequestMethod.GET)
+    public String getAllOrders() {
+        return "allOrders";
     }
 
 }

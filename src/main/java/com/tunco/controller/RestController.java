@@ -20,6 +20,7 @@ import java.util.List;
  * Created by dragon on 07-Apr-15.
  */
 @org.springframework.web.bind.annotation.RestController
+@RequestMapping("/api")
 public class RestController {
 
     @Autowired
@@ -27,6 +28,11 @@ public class RestController {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping(value = "/getAllOrders")
+    public List<Order> getAllOrders() {
+        return orderService.getAllOrders();
+    }
 
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -40,22 +46,8 @@ public class RestController {
         return "redirect:"+ "/web/order";
     }
 
-    @RequestMapping(value = "/orders", method = RequestMethod.POST)
-    public Order orders(ArrayList<Item> items) {
-//        Order order = new Order(items);
-//        order.setEmail("ttt");
-//        order.setTotalPrice(99);
-//        return order;
-        return null;
-    }
-
-    @RequestMapping(value = "/getAllOrders")
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
-    }
-
-    @RequestMapping(value = "/getItemList")
-    public List<String> getItemList(){
+    @RequestMapping(value = "/getCompositeDishList")
+    public List<String> getCompositeDishList(){
         List<String> ret = new ArrayList<String>();
         for (CompositeDish compositeDish : CompositeDish.values()) {
             ret.add(compositeDish.getDishName());

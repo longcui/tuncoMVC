@@ -2,6 +2,7 @@ package com.tunco.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,17 +16,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", items=" + items.get(0).toString() +
-                ", email='" + email + '\'' +
-                ", totalPrice=" + totalPrice +
-                ", orderStatus=" + orderStatus +
-                '}';
-    }
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
     private List<Item> items = new ArrayList<Item>();
 
@@ -34,6 +24,9 @@ public class Order {
 
     @Column(name = "totalPrice", nullable = false)
     private double totalPrice;
+
+    @Column(name = "time", nullable = false)
+    private Date time;
 
     private OrderStatus orderStatus;
 
@@ -45,6 +38,7 @@ public class Order {
         this.email = email;
         this.items = items;
         this.orderStatus = orderStatus;
+        this.time = new Date();
     }
 
     public int getId() {
@@ -86,4 +80,21 @@ public class Order {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", items=" + items.get(0).toString() +
+                ", email='" + email + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", orderStatus=" + orderStatus +
+                '}';
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
 }

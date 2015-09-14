@@ -23,7 +23,7 @@ function sendOrder() {
 
     //var csrf = CSRF.substring(1, CSRF.length - 1);
     $.ajax({
-        url: BASE_URL + "/order",
+        url: BASE_URL + "/api/order",
         //url: "http://localhost:8080/web/order",
         type:"POST",
         //should not have the line below!!!
@@ -57,7 +57,7 @@ function sendOrder() {
 
 function populateItemList() {
     $.ajax({
-        url: BASE_URL + "/getItemList",
+        url: BASE_URL + "/api/getCompositeDishList",
         //url: "http://localhost:8080/web/order",
         type:"GET",
         success: function(datas) {
