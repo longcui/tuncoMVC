@@ -6,8 +6,8 @@ import javax.persistence.*;
  * Created by dragon on 17-Mar-15.
  */
 @Entity
-@Table(name = "vegetableType")
-public class VegetableType {
+@Table(name = "drinkType")
+public class DrinkType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

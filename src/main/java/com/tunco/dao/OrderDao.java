@@ -11,7 +11,7 @@ import java.util.List;
  * Created by dragon on 17-Mar-15.
  */
 @Repository
-public class OrderDao extends AbstractDao  {
+public class OrderDao extends AbstractDao {
     public void saveItem(Item item) {
         persist(item);
     }
@@ -20,7 +20,6 @@ public class OrderDao extends AbstractDao  {
         Criteria criteria = getSession().createCriteria(Order.class);
         return criteria.list();
     }
-
 
     public void deleteOrder(int orderId) {
 //        SQLQuery sqlQuery = getSession().createSQLQuery("DELETE FROM tunco.order WHERE id = :orderId");

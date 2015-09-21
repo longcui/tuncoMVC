@@ -40,8 +40,20 @@
     <input type="text" id="telephone">
 
     <div class="form-group">
-        <label for="itemName">Select Dish:</label>
-        <select class="form-control" id="itemName">
+        <label for="compositeDishName">Select Dish:</label>
+        <select class="form-control" id="compositeDishName">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="vegetableName">Select vegetable:</label>
+        <select multiple class="form-control" id="vegetableName">
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="drinkName">Select Drink:</label>
+        <select  multiple class="form-control" id="drinkName">
         </select>
     </div>
 

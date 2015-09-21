@@ -21,4 +21,5 @@ public abstract class AbstractDao {
         getSession().delete(entity);
     }
 
+
 }

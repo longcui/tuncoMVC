@@ -1,8 +1,8 @@
 package com.tunco.model;
 
 /**
- * Created by dragon on 28-Jun-15.
- */
+* Created by dragon on 28-Jun-15.
+*/
 public enum ToppingType {
     PEANUT("peanøtter", ""),
     CRUSHED("Knuste", ""),

@@ -46,7 +46,7 @@ public class Item {
     private ProteinType proteinType;
 
     @Transient
-    private ArrayList<VegetableType> vegetableTypes;
+    private ArrayList<VegetableType11> vegetableTypes;
 
     @Column(name = "sauceType", nullable = false)
     private SauceType sauceType;
@@ -151,11 +151,11 @@ public class Item {
     }
 
 
-    public ArrayList<VegetableType> getVegetableTypes() {
+    public ArrayList<VegetableType11> getVegetableTypes() {
         return vegetableTypes;
     }
 
-    public void setVegetableTypes(ArrayList<VegetableType> vegetableTypes) {
+    public void setVegetableTypes(ArrayList<VegetableType11> vegetableTypes) {
         this.vegetableTypes = vegetableTypes;
     }
 

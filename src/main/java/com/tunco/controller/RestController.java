@@ -1,6 +1,7 @@
 package com.tunco.controller;
 
 import com.tunco.model.*;
+import com.tunco.service.GenericService;
 import com.tunco.service.OrderService;
 import com.tunco.service.UserService;
 import com.tunco.tool.EmailUtil;
@@ -29,6 +30,9 @@ public class RestController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private GenericService genericService;
+
     @RequestMapping(value = "/getAllOrders")
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
@@ -53,6 +57,16 @@ public class RestController {
             ret.add(compositeDish.getDishName());
         }
         return ret;
+    }
+
+    @RequestMapping(value = "/getVegetablesList")
+    public List<Object> getVegetablesList(){
+        return genericService.getAll(VegetableType.class);
+    }
+
+    @RequestMapping(value = "/getDrinksList")
+    public List<Object> getDrinksList(){
+        return genericService.getAll(DrinkType.class);
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.POST)
