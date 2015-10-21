@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by dragon on 26-Mar-15.
  */
 @Entity
-@Table(name = "item", catalog = "tunco")
+@Table(name = "item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @Configuration
 @ComponentScan({ "com.tunco" })
-@PropertySource(value = { "classpath:application.properties" })
+@PropertySource(value = {"classpath:application.properties"})
 @Import({ SecurityConfig.class, HibernateConfiguration.class })
 public class AppConfig {
 

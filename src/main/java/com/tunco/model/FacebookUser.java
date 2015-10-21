@@ -8,7 +8,7 @@ import javax.persistence.Table;
  * Created by dragon on 06-Jun-15.
  */
 @Entity
-@Table(name = "facebookuser", catalog = "tunco")
+@Table(name = "facebookuser")
 public class FacebookUser extends User {
     @Column(name = "accessToken")
     private String accessToken;

@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Created by dragon on 27-Jun-15.
  */
 @Entity
-@Table(name = "user_role", catalog = "tunco")
+@Table(name = "user_role")
 public class UserRole {
     @Id
     @Column(name = "user_role_id")

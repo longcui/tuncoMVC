@@ -14,7 +14,7 @@ public abstract class AbstractDao {
     }
 
     public void persist(Object entity) {
-        getSession().persist(entity);
+        getSession().save(entity);
     }
 
     public void delete(Object entity) {

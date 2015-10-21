@@ -7,6 +7,29 @@
     <version>1.0-SNAPSHOT</version>
     <name>tuncoMVC</name>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/local</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>server</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources/server</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
     <properties>
         <spring.version>4.1.1.RELEASE</spring.version>
         <hibernate.version>4.3.6.Final</hibernate.version>

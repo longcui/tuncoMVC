@@ -21,8 +21,8 @@ function sendOrder() {
     var email = $("#email").val();
     var telephone = $("#telephone").val();
     var name = $("#name").val();
-    var itemName = $("#itemName").val();    //if the option has value attr, it shows the attr, if not, it shows the displayed value.
-    var itemDescription = $("#itemName").find("option:selected").text();    //no space between option:selected
+    var itemName = $("#compositeDishName").val();    //if the option has value attr, it shows the attr, if not, it shows the displayed value.
+    var itemDescription = $("#compositeDishName").find("option:selected").text();    //no space between option:selected
 
     //var csrf = CSRF.substring(1, CSRF.length - 1);
     $.ajax({

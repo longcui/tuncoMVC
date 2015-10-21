@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by dragon on 24-Jan-15.
  */
 @Entity
-@Table(name = "user", catalog = "tunco", uniqueConstraints = {
+@Table(name = "user",  uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

@@ -10,7 +10,7 @@ import java.util.List;
  * about relationship， it defaults to FetchType.LAZY.
 */
 @Entity
-@Table(name = "order", catalog = "tunco")
+@Table(name = "food_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
